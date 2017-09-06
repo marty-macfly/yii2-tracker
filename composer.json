@@ -1,0 +1,26 @@
+{
+	"name": "macfly/yii2-tracker",
+	"description": "Yii2 component to to track request for along all microservices app",
+	"keywords": ["yii2", "server", "tracking", "request", "log", "debug"],
+	"type": "yii2-component",
+	"license": "BSD-3-Clause",
+	"support": {
+		"issues": "https://github.com/Marty-Macfly/yii2-tracker/issues",
+		"source": "https://github.com/Marty-Macfly/yii2-tracker"
+	},
+	"authors": [
+		{
+			"name": "Charles DELFLY",
+			"email": "c.delfly@linkbynet.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"yiisoft/yii2": "~2.0.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"macfly\\tracker": "src/"
+		}
+	}
+}
