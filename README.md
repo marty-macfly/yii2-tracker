@@ -8,7 +8,7 @@ Component will try to get from :
 * From RabbitMQ message header, currently working with [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq)
 * If no unique request id is provide create one it means we're the first micro-service to be call
 * If we're doing request to API through [yiisoft/yii2-httpclient](https://github.com/yiisoft/yii2-httpclient/) add the @X-tracker-request-id@ to outgoing request
-* If we're sending RabbitMQ message add to every message a header @X-tracker-request-id@, currently working with my forked version of [mikemadisonweb/yii2-rabbitmq extension](https://github.com/Marty-Macfly/yii2-rabbitmq) waiting for [pull request](https://github.com/mikemadisonweb/yii2-rabbitmq/pull/17) feedback to push it upstream.
+* If we're sending RabbitMQ message add to every message a header @X-tracker-request-id@, working with version 1.7 of [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq/)
 
 Installation
 ------------

@@ -28,7 +28,7 @@ class Tracker extends Component
         // Get id from AMQP message
         if (Yii::$app->has('rabbitmq') && ($rabbitmq = Yii::$app->get('rabbitmq')) instanceof \mikemadisonweb\rabbitmq\Configuration) {
             $that = $this;
-            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQEvent::BEFORE_CONSUME'), function ($event) use ($header, $that) {
+            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQConsumerEvent::BEFORE_CONSUME'), function ($event) use ($header, $that) {
                 if ($event->message->has('application_headers')) {
                     $headers = $event->message->get('application_headers')->getNativeData();
                     if (($id = \yii\helpers\ArrayHelper::getValue($headers, $header)) !== null) {
