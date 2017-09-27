@@ -17,6 +17,12 @@ class Tracker extends Component
     {
         parent::init();
 
+				if(!Yii::$app->has('tracker'))
+				{
+					Yii::error("No tracker component in the app so tracking will be disabled");
+					return;
+				}
+
         // Get id from HTTP request
         $request = Yii::$app->getRequest();
         if ($request instanceof Request && (Yii::$app->tracker->id = Yii::$app->request->headers->get(Yii::$app->tracker->header)) !== null) {
