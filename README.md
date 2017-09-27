@@ -9,6 +9,7 @@ Component will try to get from :
 * If no unique request id is provide create one it means we're the first micro-service to be call
 * If we're doing request to API through [yiisoft/yii2-httpclient](https://github.com/yiisoft/yii2-httpclient/) add the @X-tracker-request-id@ to outgoing request
 * If we're sending RabbitMQ message add to every message a header @X-tracker-request-id@, working with version 1.7 of [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq/)
+* Add header @X-tracker-request-id@ in every [HTTP response](http://www.yiiframework.com/doc-2.0/guide-runtime-responses.html)
 
 Installation
 ------------
