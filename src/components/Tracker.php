@@ -41,7 +41,7 @@ class Tracker extends Component
 
         $id = $this->getId();
 
-        // Set id to out going HTTP request
+        // Set id to out going HTTP Client request
         if (class_exists('\yii\httpclient\Client')) {
             Event::on('\yii\httpclient\Client', constant('\yii\httpclient\Client::EVENT_BEFORE_SEND'), function ($event) use ($id, $header) {
                 $event->request->addHeaders([$header => $id]);
@@ -55,6 +55,13 @@ class Tracker extends Component
                 $headers = $event->message->has('application_headers') ? $event->message->get('application_headers') : new \PhpAmqpLib\Wire\AMQPTable();
                 $headers->set($header, $id);
                 $event->message->set('application_headers', $headers);
+            });
+        }
+
+        // Set id to out going HTTP response
+        if (class_exists('\yii\web\Response')) {
+            Event::on('\yii\web\Response', constant('\yii\web\Response::EVENT_BEFORE_SEND'), function ($event) use ($id, $header) {
+                $event->response->headers->set($header, $id);
             });
         }
     }
