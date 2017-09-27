@@ -61,7 +61,7 @@ class Tracker extends Component
         // Set id to out going HTTP response
         if (class_exists('\yii\web\Response')) {
             Event::on('\yii\web\Response', constant('\yii\web\Response::EVENT_BEFORE_SEND'), function ($event) use ($id, $header) {
-                $event->response->headers->set($header, $id);
+							$event->sender->headers->set($header, $id);
             });
         }
     }
