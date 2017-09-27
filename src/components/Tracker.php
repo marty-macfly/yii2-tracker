@@ -39,7 +39,7 @@ class Tracker extends Component
         // Set id to out going HTTP Client request
         if (class_exists('\yii\httpclient\Client')) {
             Event::on('\yii\httpclient\Client', constant('\yii\httpclient\Client::EVENT_BEFORE_SEND'), function ($event) {
-                $event->request->addHeaders([Yii::$app->tracker->header => Yii::$app->tracker->id]);
+                $event->request->addHeaders([Yii::$app->tracker->header => Yii::$app->tracker->getId()]);
             });
         }
 
@@ -48,7 +48,7 @@ class Tracker extends Component
             $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQPublisherEvent::BEFORE_PUBLISH'), function ($event) {
                 // Get headers if exist or create one if none
                 $headers = $event->message->has('application_headers') ? $event->message->get('application_headers') : new \PhpAmqpLib\Wire\AMQPTable();
-                $headers->set(Yii::$app->tracker->header, Yii::$app->tracker->id);
+                $headers->set(Yii::$app->tracker->header, Yii::$app->tracker->getId());
                 $event->message->set('application_headers', $headers);
             });
         }
@@ -56,7 +56,7 @@ class Tracker extends Component
         // Set id to out going HTTP response
         if (class_exists('\yii\web\Response')) {
             Event::on('\yii\web\Response', constant('\yii\web\Response::EVENT_BEFORE_SEND'), function ($event) {
-                $event->sender->headers->set(Yii::$app->tracker->header, Yii::$app->tracker->id);
+                $event->sender->headers->set(Yii::$app->tracker->header, Yii::$app->tracker->getId());
             });
         }
     }
