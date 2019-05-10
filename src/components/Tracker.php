@@ -39,7 +39,9 @@ class Tracker extends Component
         // Set id to out going HTTP Client request
         if (class_exists('\yii\httpclient\Client')) {
             Event::on('\yii\httpclient\Client', constant('\yii\httpclient\Client::EVENT_BEFORE_SEND'), function ($event) {
-                $event->request->addHeaders([Yii::$app->tracker->header => Yii::$app->tracker->getId()]);
+                if(!$event->request->headers->has(Yii::$app->tracker->header)) {
+                    $event->request->addHeaders([Yii::$app->tracker->header => Yii::$app->tracker->getId()]);
+                }
             });
         }
 
