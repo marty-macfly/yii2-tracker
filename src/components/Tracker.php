@@ -25,7 +25,7 @@ class Tracker extends Component
 
         // Get id from AMQP message
         if (Yii::$app->has('rabbitmq') && ($rabbitmq = Yii::$app->get('rabbitmq')) instanceof \mikemadisonweb\rabbitmq\Configuration) {
-            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQConsumerEvent::BEFORE_CONSUME'), function ($event) {
+            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\events\RabbitMQConsumerEvent::BEFORE_CONSUME'), function ($event) {
                 if ($event->message->has('application_headers')) {
                     $headers = $event->message->get('application_headers')->getNativeData();
                     if (($id = \yii\helpers\ArrayHelper::getValue($headers, Yii::$app->tracker->header)) !== null) {
@@ -47,7 +47,7 @@ class Tracker extends Component
 
         // Set id to out going AMQP message
         if (Yii::$app->has('rabbitmq') && ($rabbitmq = Yii::$app->get('rabbitmq')) instanceof \mikemadisonweb\rabbitmq\Configuration) {
-            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQPublisherEvent::BEFORE_PUBLISH'), function ($event) {
+            $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\events\RabbitMQPublisherEvent::BEFORE_PUBLISH'), function ($event) {
                 // Get headers if exist or create one if none
                 $headers = $event->message->has('application_headers') ? $event->message->get('application_headers') : new \PhpAmqpLib\Wire\AMQPTable();
                 $headers->set(Yii::$app->tracker->header, Yii::$app->tracker->getId());
