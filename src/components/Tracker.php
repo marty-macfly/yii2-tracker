@@ -32,7 +32,8 @@ class Tracker extends Component
                     \Yii::info(sprintf("Get tracker id from AMQP header '%s'", Yii::$app->tracker->header));
                 }
             }
-        }
+        };
+        
         if (Yii::$app->has('rabbitmq') && ($rabbitmq = Yii::$app->get('rabbitmq')) instanceof \mikemadisonweb\rabbitmq\Configuration) {
             // Use RabbitMQ module v2.x
             if (defined('\mikemadisonweb\rabbitmq\events\RabbitMQConsumerEvent::BEFORE_CONSUME')) {
