@@ -8,7 +8,7 @@ Component will try to get from :
 * From RabbitMQ message header, currently working with [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq)
 * If no unique request id is provide create one it means we're the first micro-service to be call
 * If we're doing request to API through [yiisoft/yii2-httpclient](https://github.com/yiisoft/yii2-httpclient/) add the @X-tracker-request-id@ to outgoing request
-* If we're sending RabbitMQ message add to every message a header @X-tracker-request-id@, working with version 1.7 of [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq/)
+* If we're sending RabbitMQ message add to every message a header @X-tracker-request-id@, working with version 2.x of [mikemadisonweb/yii2-rabbitmq extension](https://github.com/mikemadisonweb/yii2-rabbitmq/)
 * Add header @X-tracker-request-id@ in every [HTTP response](http://www.yiiframework.com/doc-2.0/guide-runtime-responses.html)
 
 Installation
@@ -25,7 +25,7 @@ php composer.phar require --prefer-dist "macfly/yii2-tracker" "*"
 or add to the @require@ section in your `composer.json` file.
 
 ```
-"macfly/yii2-api-tracker": "*"
+"macfly/yii2-tracker": "*"
 ```
 
 Configure
