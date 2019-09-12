@@ -80,7 +80,7 @@ class Tracker extends Component
                 $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\events\RabbitMQPublisherEvent::BEFORE_PUBLISH'), $before_publish);
             
             } // Use RabbitMQ module v1.x
-            elseif (defined('\mikemadisonweb\rabbitmq\components\RabbitMQConsumerEvent::BEFORE_CONSUME'))
+            elseif (defined('\mikemadisonweb\rabbitmq\components\RabbitMQConsumerEvent::BEFORE_PUBLISH'))
             {
                 $rabbitmq->on(constant('\mikemadisonweb\rabbitmq\components\RabbitMQConsumerEvent::BEFORE_PUBLISH'), $before_publish);
             }
